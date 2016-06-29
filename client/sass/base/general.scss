@@ -199,6 +199,11 @@ li:nth-child(3):after {
     font-size: 30px;
 
   }
+  .dollar-contents{
+    font-family: helvetica;
+    line-height: normal;
+    font-size: 30px;
+  }
 }
 
 
@@ -225,13 +230,6 @@ li:nth-child(3):after {
     position: fixed;
     width:100vw;
     height:100vh;
-    // top:50%;
-    // left:50%;
-    // width:100px;
-    // height:50px;
-    // margin-top:-25px;
-    // margin-left:-50px;
-    // line-height: 50px;
     vertical-align: middle;
     text-align: center;
     font-size: $font-size-h2;

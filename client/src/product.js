@@ -50,6 +50,7 @@ Product.controller('productCtrl', [ '$scope','$location', '$rootScope', '$http',
                   }
           }).then(function(response){
             $rootScope.Cart = response;
+            $rootScope.updateCart();
             $rootScope.pageLoading = false;
             console.log(response);
           });

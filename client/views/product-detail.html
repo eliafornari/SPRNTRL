@@ -3,10 +3,10 @@
 
     <img class="detail-image" src="{{Detail.images[0].url.http}}" alt="{{Detail.description}}"  class="product-image"/>
 
-    <p>{{Detail.price.value}}</p>
+    <p class="detail-price">{{Detail.price.value}}</p>
 
-    <div class="product-add">
-      <a ng-click="addToCart(Detail.id)">+</a>
+    <div class="detail-add">
+      <p class="hvr-skew" ng-click="addToCart(Detail.id)">+</p>
     </div>
 
 </div>

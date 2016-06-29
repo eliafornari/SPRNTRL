@@ -154,7 +154,7 @@ angular.module('myApp', ["ui.router", "ngRoute"])
   };
 })
 
-.controller('appCtrl', ($rootScope, $location, $window, $timeout, $http, anchorSmoothScroll, $scope)=>{
+.controller('appCtrl', ($rootScope, $location, $window, $timeout, $http, anchorSmoothScroll, $scope, $anchorScroll)=>{
 
   $rootScope.token;
 
@@ -162,11 +162,11 @@ angular.module('myApp', ["ui.router", "ngRoute"])
   $rootScope.noRefresh = function(url){
     var str = url;
     str = str.substring(1, str.length);
-        if ($location.path() !== url) {
+        if ($location.path() != url) {
           anchorSmoothScroll.scrollTo(str);
           $location.path(url, false);
         } else {
-          $anchorScroll();
+          // $anchorScroll();
         }
   }
 
@@ -249,40 +249,76 @@ $rootScope.windowHeight= $window.innerHeight;
   });
 
 
-
+//remove logo on scroll
 $rootScope.logoCorner=false;
 $rootScope.showDetail=false;
-//remove logo on scroll
-angular.element($window).bind("scroll", function() {
- var scroll=this.pageYOffset ;
 
-console.log('$rootScope.windowHeight: '+$rootScope.windowHeight);
- console.log('$rootScope.windowHeight*2: '+$rootScope.windowHeight*2);
-console.log(scroll);
+var pages = new Array();
+ pages = [
+  {
+    name:'home',
+    offset: 0
+  },
+  {
+    name:'products',
+    offset: 0
+  },
+  {
+    name:'charity',
+    offset: 0
+  }
+];
+
+setTimeout(function(){
+  for (var i in pages){
+    var element = jQuery('#'+pages[i].name);
+    var thisOff = element[0].offsetTop;
+    pages[i].offset = thisOff;
+    console.log(pages);
+  }
+}, 600);
+
+
+angular.element($window).bind("scroll", function() {
+ var scroll=this.pageYOffset;
+
+
+
+  if((scroll > pages[0].offset)&&(scroll < pages[1].offset)){
+    console.log('first');
+    if ($location.path()!= $location.path('/')){
+      $location.path('/', false);
+    }
+
+  }else if((scroll >= pages[1].offset)&&(scroll < pages[2].offset)){
+    console.log('products');
+    if ($location.path()!= $location.path('/products')){
+      $location.path('/products', false);
+    }
+
+  }else if(scroll >= pages[2].offset){
+    console.log('charity');
+    if ($location.path()!= $location.path('/charity')){
+      $location.path('/charity', false);
+    }
+  }
+
 
   if (scroll < ($rootScope.windowHeight/2)){
     $rootScope.logoCorner=false;
     $rootScope.showDetail=false;
-    console.log(false);
-  }else if(scroll < ($rootScope.windowHeight/2)) && (scroll <= ($rootScope.windowHeight*2))){
+  }else if((scroll > ($rootScope.windowHeight/2)) && (scroll <= ($rootScope.windowHeight*2))){
     $rootScope.logoCorner=true;
     $rootScope.showDetail=true;
-    console.log(true);
-
   }else{
     $rootScope.logoCorner=false;
-    console.log(false);
   }
   $scope.$apply();
 
 })
 
 
-
-
-
-
-})
+})// end of
 
 
 

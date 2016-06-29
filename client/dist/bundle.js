@@ -134,18 +134,18 @@ _angular2.default.module('myApp', ["ui.router", "ngRoute"]).run(['$rootScope', '
     return trusted;
     // }
   };
-}).controller('appCtrl', function ($rootScope, $location, $window, $timeout, $http, anchorSmoothScroll, $scope) {
+}).controller('appCtrl', function ($rootScope, $location, $window, $timeout, $http, anchorSmoothScroll, $scope, $anchorScroll) {
 
   $rootScope.token;
 
   $rootScope.noRefresh = function (url) {
     var str = url;
     str = str.substring(1, str.length);
-    if ($location.path() !== url) {
+    if ($location.path() != url) {
       anchorSmoothScroll.scrollTo(str);
       $location.path(url, false);
     } else {
-      $anchorScroll();
+      // $anchorScroll();
     }
   };
 
@@ -219,31 +219,65 @@ _angular2.default.module('myApp', ["ui.router", "ngRoute"]).run(['$rootScope', '
     $scope.$apply();
   });
 
+  //remove logo on scroll
   $rootScope.logoCorner = false;
   $rootScope.showDetail = false;
-  //remove logo on scroll
+
+  var pages = new Array();
+  pages = [{
+    name: 'home',
+    offset: 0
+  }, {
+    name: 'products',
+    offset: 0
+  }, {
+    name: 'charity',
+    offset: 0
+  }];
+
+  setTimeout(function () {
+    for (var i in pages) {
+      var element = (0, _jquery2.default)('#' + pages[i].name);
+      var thisOff = element[0].offsetTop;
+      pages[i].offset = thisOff;
+      console.log(pages);
+    }
+  }, 600);
+
   _angular2.default.element($window).bind("scroll", function () {
     var scroll = this.pageYOffset;
 
-    console.log('$rootScope.windowHeight: ' + $rootScope.windowHeight);
-    console.log('$rootScope.windowHeight*2: ' + $rootScope.windowHeight * 2);
-    console.log(scroll);
+    if (scroll > pages[0].offset && scroll < pages[1].offset) {
+      console.log('first');
+      if ($location.path() != $location.path('/')) {
+        $location.path('/', false);
+      }
+    } else if (scroll >= pages[1].offset && scroll < pages[2].offset) {
+      console.log('products');
+      if ($location.path() != $location.path('/products')) {
+        $location.path('/products', false);
+      }
+    } else if (scroll >= pages[2].offset) {
+      console.log('charity');
+      if ($location.path() != $location.path('/charity')) {
+        $location.path('/charity', false);
+      }
+    }
 
     if (scroll < $rootScope.windowHeight / 2) {
       $rootScope.logoCorner = false;
       $rootScope.showDetail = false;
-      console.log(false);
-    } else if (scroll >= $rootScope.windowHeight && scroll <= $rootScope.windowHeight * 2) {
+    } else if (scroll > $rootScope.windowHeight / 2 && scroll <= $rootScope.windowHeight * 2) {
       $rootScope.logoCorner = true;
       $rootScope.showDetail = true;
-      console.log(true);
     } else {
-      $rootScope.logoCorner = true;
-      console.log(false);
+      $rootScope.logoCorner = false;
     }
     $scope.$apply();
   });
-}).directive('productDirective', function ($rootScope, $location, $window, $timeout) {
+}) // end of
+
+.directive('productDirective', function ($rootScope, $location, $window, $timeout) {
   return {
     restrict: 'E',
     templateUrl: 'views/products.html',
@@ -301,11 +335,10 @@ Cart.controller('cartCtrl', function ($scope, $location, $rootScope, $stateParam
 
   $scope.openCart = function () {
     $rootScope.showCart = !$rootScope.showCart;
-
     $rootScope.updateCart();
   };
 
-  $scope.$watch('Cart', function (newValue) {
+  $rootScope.$watch('Cart', function (newValue) {
     console.log(newValue);
     $rootScope.Cart = newValue;
   });
@@ -318,16 +351,17 @@ Cart.controller('cartCtrl', function ($scope, $location, $rootScope, $stateParam
         // 'Content-Type': 'application/json'
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      transformRequest: transformRequestAsFormPost,
-      data: {}
-    }).then(function (response) {
+      transformRequest: transformRequestAsFormPost
+    }). // data: {
+    //       }
+    then(function (response) {
       $rootScope.Cart = response.data;
 
       console.log($rootScope.Cart);
       $rootScope.pageLoading = false;
       console.log(response);
     });
-  }; //addToCart
+  }; //updateCart
 });
 
 Cart.directive('cartDirective', function ($rootScope, $location, $window, $stateParams, $timeout) {
@@ -457,6 +491,7 @@ Product.controller('productCtrl', ['$scope', '$location', '$rootScope', '$http',
       }
     }).then(function (response) {
       $rootScope.Cart = response;
+      $rootScope.updateCart();
       $rootScope.pageLoading = false;
       console.log(response);
     });

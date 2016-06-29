@@ -7,13 +7,12 @@ Cart.controller('cartCtrl', function($scope, $location, $rootScope, $stateParams
 
   $scope.openCart = function(){
     $rootScope.showCart = !$rootScope.showCart;
-
     $rootScope.updateCart();
   }
 
 
 
-  $scope.$watch('Cart', function(newValue) {
+  $rootScope.$watch('Cart', function(newValue) {
       console.log(newValue);
       $rootScope.Cart = newValue;
   });
@@ -28,9 +27,8 @@ Cart.controller('cartCtrl', function($scope, $location, $rootScope, $stateParams
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         transformRequest: transformRequestAsFormPost,
-        data: {
-
-              }
+        // data: {
+        //       }
       }).then(function(response){
         $rootScope.Cart = response.data;
 
@@ -38,7 +36,7 @@ Cart.controller('cartCtrl', function($scope, $location, $rootScope, $stateParams
         $rootScope.pageLoading = false;
         console.log(response);
       });
-}//addToCart
+}//updateCart
 
 });
 

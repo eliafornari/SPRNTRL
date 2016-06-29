@@ -1,0 +1,20 @@
+
+
+.charity{
+  width:100vw;
+  height:100vh;
+  position: relative;
+
+}
+
+.charity-comingsoon{
+  display: block;
+  margin: auto;
+  width:150px;
+  p{
+    text-align: center;
+    width: 100%;
+    font-size: $font-size-p;
+  }
+
+}

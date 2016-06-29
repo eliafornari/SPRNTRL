@@ -1,0 +1,104 @@
+.home-table{
+  position: relative;
+  background-color: transparent;
+  top: 0;
+}
+
+
+
+
+.logo{
+  width: 200px;
+  position: fixed;
+  margin-left: -100px;
+  left: 50%;
+  z-index:$z-logo;
+  h1{
+    width:100%;
+    text-align: center;
+    @include h1();
+    line-height: 7px;
+  }
+}
+
+
+
+
+$red: #ff0000;
+$pink: #fd00ff;
+$blue: #0026fe;
+$celeste: #00f0ff;
+$green: #11ff00;
+$yellow: #fff900;
+
+
+.gradient{
+  // background-image: url('/assets/gradient.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  background: red; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient($red, $pink, $blue, $celeste,$green,$yellow,$red ); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($red, $pink, $blue, $celeste,$green,$yellow,$red); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($red, $pink, $blue, $celeste,$green,$yellow,$red); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($red, $pink, $blue, $celeste,$green,$yellow,$red); /* Standard syntax */
+
+}
+
+
+.rotating {
+  -webkit-animation: rotating 12s linear infinite;
+  -moz-animation: rotating 12s linear infinite;
+  -ms-animation: rotating 12s linear infinite;
+  -o-animation: rotating 12s linear infinite;
+  animation: rotating 12s linear infinite;
+}
+
+
+
+
+
+
+
+.logoCorner{
+  margin-left: auto;
+  right:$margin-sides;
+  top: $margin-sides;
+  -webkit-animation: all 3s linear;
+  -moz-animation: all 3s linear;
+  -ms-animation: all 3s linear;
+  -o-animation: all 3s linear;
+  animation: all 3s linear;
+}
+
+
+
+$animation-bezier: ease-in;
+$animation-speed: 0.3s;
+
+.logo{
+  position: fixed;
+
+}
+
+.logo.logoCorner{
+
+}
+
+
+.logo.logoCorner-remove.logoCorner-remove-active{
+  -webkit-animation: all $animation-speed $animation-bezier;
+  -moz-animation: all $animation-speed $animation-bezier;
+  -ms-animation: all $animation-speed $animation-bezier;
+  -o-animation: all $animation-speed $animation-bezier;
+  animation: all $animation-speed $animation-bezier;
+}
+
+.logo.logoCorner-add.logoCorner-add-active{
+  -webkit-animation: all $animation-speed $animation-bezier;
+  -moz-animation: all $animation-speed $animation-bezier;
+  -ms-animation: all $animation-speed $animation-bezier;
+  -o-animation: all $animation-speed $animation-bezier;
+  animation: all $animation-speed $animation-bezier;
+}

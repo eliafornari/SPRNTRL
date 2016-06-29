@@ -1,0 +1,359 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/*....................................SCSS VARIABLES..................................*/
+/*....................................................................................*/
+/*.................................................................................*/
+/*$break-large-desktop: 2500px;*/
+/*$break-infinite: 500000px;*/
+/*....................................SCSS MIXINS..................................*/
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -ms-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    transform: rotateY(0deg); }
+  to {
+    -ms-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    transform: rotateY(360deg); } }
+@keyframes rotating {
+  from {
+    -ms-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    transform: rotateY(0deg); }
+  to {
+    -ms-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    transform: rotateY(360deg); } }
+/*....................................General settings..................................*/
+/*.....................TEXT MARK STYLES......................*/
+::-moz-selection {
+  background: transparent;
+  text-shadow: none; }
+
+::selection {
+  background: transparent;
+  text-shadow: none; }
+
+a:active {
+  color: #ede611; }
+
+.ng-click-active {
+  color: #ede611;
+  stroke: #ede611; }
+
+/*.....................ACTIVE CLASSES......................*/
+.active {
+  color: #FF0000 !important;
+  pointer-events: none; }
+
+/*....................HIDING SCROLLBAR.....................*/
+::-webkit-scrollbar {
+  display: none; }
+
+* {
+  -webkit-overflow-scrolling: touch; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+/*.....................GENERAL STYLES......................*/
+html {
+  font-family: helvetica;
+  font-weight: 900;
+  width: 100%;
+  margin: 0, 0;
+  padding: 0, 0;
+  box-sizing: border-box; }
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0, 0;
+  padding: 0, 0;
+  display: table;
+  text-transform: uppercase; }
+
+p, a, li {
+  font-size: 14px;
+  list-style-type: none;
+  letter-spacing: 1px;
+  color: #000000; }
+
+input, textarea, select, a, li {
+  text-decoration: none; }
+
+a {
+  font-family: helvetica;
+  font-weight: 900;
+  cursor: pointer; }
+
+/*.........................MAIN............................*/
+main {
+  height: auto;
+  position: relative;
+  display: block;
+  list-style-type: none;
+  display: table; }
+
+table {
+  height: 100vh;
+  width: 100vw; }
+  table tr td {
+    vertical-align: middle;
+    height: 100%; }
+
+li {
+  display: inline; }
+
+li:nth-child(3):after {
+  content: "\A";
+  white-space: pre; }
+
+.nav {
+  position: fixed;
+  width: 100vw;
+  left: 0;
+  bottom: 0;
+  z-index: 5; }
+  .nav .nav-list {
+    width: 70vw;
+    margin: auto; }
+    .nav .nav-list .nav-link {
+      width: 20vw;
+      display: inline-block;
+      margin-left: 5vw; }
+      .nav .nav-list .nav-link:nth-child(1) {
+        margin-left: 0vw; }
+      .nav .nav-list .nav-link a {
+        width: 100%;
+        text-align: center;
+        display: block;
+        height: 20vh;
+        vertical-align: middle;
+        font-size: 14px;
+        line-height: 30px;
+        font-family: helvetica;
+        line-height: 20vh; }
+
+.dollar {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  z-index: 10; }
+  .dollar a {
+    font-size: 14px;
+    line-height: 50px;
+    font-family: helvetica;
+    line-height: normal;
+    font-size: 30px; }
+
+/*.............................Loader............................*/
+.page-loader-div {
+  display: block;
+  height: 100vh;
+  opacity: 1;
+  display: block;
+  width: 100vw;
+  float: left;
+  padding: 0;
+  margin: 0;
+  display: list-item;
+  background-color: transparent;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  position: fixed; }
+  .page-loader-div .loading-p {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 14px;
+    font-family: helvetica;
+    font-weight: 900; }
+
+/*.............................NG-CLOAK............................*/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+  cursor: pointer; }
+
+.product {
+  width: 100vw;
+  height: 100vh;
+  position: relative; }
+
+.product-ul {
+  width: 100vw;
+  height: auto;
+  padding-top: 100px; }
+  .product-ul .product-li {
+    width: 15vw;
+    height: 15vw;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    display: block;
+    float: left; }
+    .product-ul .product-li .product-image {
+      width: auto;
+      height: 100%;
+      margin: auto;
+      display: block; }
+    .product-ul .product-li .product-price {
+      width: 100%; }
+
+.detail {
+  position: fixed;
+  right: 20px;
+  top: 40%;
+  z-index: 6; }
+
+.detail-image {
+  width: 30vw; }
+
+.cart-ul {
+  position: fixed;
+  left: 200px;
+  top: 50px;
+  width: 500px;
+  height: auto; }
+  .cart-ul .cart-li {
+    width: 100%; }
+
+.home-table {
+  position: relative;
+  background-color: transparent;
+  top: 0; }
+
+.logo {
+  width: 200px;
+  position: fixed;
+  margin-left: -100px;
+  left: 50%;
+  z-index: 11; }
+  .logo h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    line-height: 50px;
+    font-family: helvetica;
+    line-height: 7px; }
+
+.gradient {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: red;
+  /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#ff0000, #fd00ff, #0026fe, #00f0ff, #11ff00, #fff900, #ff0000);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#ff0000, #fd00ff, #0026fe, #00f0ff, #11ff00, #fff900, #ff0000);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#ff0000, #fd00ff, #0026fe, #00f0ff, #11ff00, #fff900, #ff0000);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#ff0000, #fd00ff, #0026fe, #00f0ff, #11ff00, #fff900, #ff0000);
+  /* Standard syntax */ }
+
+.rotating {
+  -webkit-animation: rotating 12s linear infinite;
+  -moz-animation: rotating 12s linear infinite;
+  -ms-animation: rotating 12s linear infinite;
+  -o-animation: rotating 12s linear infinite;
+  animation: rotating 12s linear infinite; }
+
+.logoCorner {
+  margin-left: auto;
+  right: 20px;
+  top: 20px;
+  -webkit-animation: all 3s linear;
+  -moz-animation: all 3s linear;
+  -ms-animation: all 3s linear;
+  -o-animation: all 3s linear;
+  animation: all 3s linear; }
+
+.logo {
+  position: fixed; }
+
+.logo.logoCorner-remove.logoCorner-remove-active {
+  -webkit-animation: all 0.3s ease-in;
+  -moz-animation: all 0.3s ease-in;
+  -ms-animation: all 0.3s ease-in;
+  -o-animation: all 0.3s ease-in;
+  animation: all 0.3s ease-in; }
+
+.logo.logoCorner-add.logoCorner-add-active {
+  -webkit-animation: all 0.3s ease-in;
+  -moz-animation: all 0.3s ease-in;
+  -ms-animation: all 0.3s ease-in;
+  -o-animation: all 0.3s ease-in;
+  animation: all 0.3s ease-in; }
+
+.charity {
+  width: 100vw;
+  height: 100vh;
+  position: relative; }
+
+.charity-comingsoon {
+  display: block;
+  margin: auto;
+  width: 150px; }
+  .charity-comingsoon p {
+    text-align: center;
+    width: 100%;
+    font-size: 14px; }

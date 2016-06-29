@@ -1,0 +1,67 @@
+/*....................................SCSS VARIABLES..................................*/
+
+
+// ........................................................FONT WEIGHTS
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-heavy: 900;
+
+
+// ........................................................FONT SIZES
+$font-size-h1:14px;
+$font-size-h2:14px;
+$font-size-p: 14px;
+
+
+
+$letter-spacing: 1px;
+
+
+
+
+// ........................................................FONT FAMILIES
+$font-family-h1: helvetica;
+$font-family-h2: helvetica;
+$font-family-p: helvetica;
+
+
+
+// ........................................................FONT LINEHEIGHTS
+$line-height-h1: 50px;
+$line-height-h2: 30px;
+$line-height-p: 22px;
+
+
+
+
+
+// ........................................................COLORS
+$black: #000000;
+$white: #FFFFFF;
+$yellow: #ede611;
+
+
+// ........................................................MARGINS
+$margin-sides: 20px;
+$margin-bottom: 35px;
+$margin-top: 100px;
+$margin-sides-mobile:10px;
+
+// ........................................................TRANSITION TIMINGS
+$transition-extreme-slow: 1.4s;
+$transition-slow: .6s;
+$transition-medium: .4s;
+$transition-fast: .2s;
+
+
+
+// ........................................................Z-INDEXES
+
+$z-logo:11;
+$z-loader:10;
+$z-dollar:10;
+$z-detail:6;
+$z-nav:5;
+
+
+/*....................................................................................*/

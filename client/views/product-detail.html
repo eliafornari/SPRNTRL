@@ -1,0 +1,12 @@
+<div class="detail" ng-controller="detailCtrl" ng-show="Detail.price && showDetail">
+
+
+    <img class="detail-image" src="{{Detail.images[0].url.http}}" alt="{{Detail.description}}"  class="product-image"/>
+
+    <p>{{Detail.price.value}}</p>
+
+    <div class="product-add">
+      <a ng-click="addToCart(Detail.id)">+</a>
+    </div>
+
+</div>

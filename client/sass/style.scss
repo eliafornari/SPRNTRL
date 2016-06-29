@@ -1,0 +1,25 @@
+
+
+// IMPORT PARTIALS
+@import "base/reset";
+@import "base/fonts";
+@import "base/variables";
+@import "base/mixins";
+@import "base/keyframes";
+@import "base/general";
+
+
+@import "partial/product";
+@import "partial/product-detail";
+@import "partial/cart";
+@import "partial/home";
+@import "partial/charity";
+
+
+
+
+// // IMPORT PAGES
+// @import "home/home";
+// @import "about/about";
+// @import "contact/contact";
+// @import "product/product";

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="appCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name=“author” title=“Elia Fornari | Qual Agency”>
+
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <title>SPRNTRL FRND GRP</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" >
+<!--
+=======================================================================
+
+  Chapter | 2016
+
+  Designed and developed by Elia Fornari | Qual Agency
+
+=======================================================================
+-->
+
+
+    <link rel="stylesheet" type="text/css" href="dist/style.css">
+    <base href="/">
+  </head>
+
+
+
+  <body>
+
+
+    <div class="dollar">
+      <a ng-click="openCart()">$</a>
+    </div>
+
+
+    <cart-directive></cart-directive>
+
+    <nav-directive></nav-directive>
+
+    <main ng-view class='main' autoscroll="true" ng-hide="pageLoading">
+    </main>
+
+    <!-- <script src="./node_modules/jquery/dist/jquery.js" type="text/javascript"></script> -->
+    <script src="dist/bundle.js"></script>
+
+</script>
+  </body>
+</html>

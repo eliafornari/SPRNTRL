@@ -1,0 +1,12 @@
+<div class="cart" ng-show="showCart" ng-controller="cartCtrl">
+
+  <ul class="cart-ul">
+    <li ng-repeat="c in Cart.contents track by $index" class="cart-li">
+      <p>{{c.quantity}} {{c.name}} {{c.pricing.formatted.without_tax}} </p>
+    </li>
+  </ul>
+
+
+  <a ui-sref="checkout">checkout</a>
+
+</div>

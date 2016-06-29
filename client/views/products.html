@@ -1,0 +1,30 @@
+<div class="product gradient" ng-controller="productCtrl" id="products">
+
+
+
+  <ul class="product-ul" >
+    <li class="product-li" ng-repeat="p in Product">
+      <a ng-click="thisProduct(p.sku)">
+        <img src="{{p.images[0].url.http}}" alt="{{p.description}}"  class="product-image"/>
+      </a>
+
+      <!-- <div class="product-price">
+        <p>{{p.price.value}}</p>
+      </div>
+
+      <div class="product-add">
+        <a ng-click="addToCart(p.id)">+</a>
+      </div> -->
+
+
+    </li>
+  </ul>
+
+
+<product-detail></product-detail>
+
+  <!-- <div class="" ui-view>
+
+  </div> -->
+
+</div>

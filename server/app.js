@@ -263,11 +263,11 @@ app.get('/authenticate', function(req, res){
 
 
 
-
-    const options = {
-      key: fs.readFileSync('.//keys/key.pem', 'utf8'),
-      cert: fs.readFileSync('.//keys/cert.pem', 'utf8')
-    };
+    //
+    // const options = {
+    //   key: fs.readFileSync('.//keys/key.pem', 'utf8'),
+    //   cert: fs.readFileSync('.//keys/cert.pem', 'utf8')
+    // };
 
 
 
@@ -288,6 +288,7 @@ app.get('/authenticate', function(req, res){
 
     app.get('*', routes.index);
 
+    app.listen(80, () => console.log("listening on 9000"));
 
-    https.createServer(options, app).listen(443);
+    // https.createServer(options, app).listen(80);
     // http.createServer(app).listen(9000);

@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "gulp watch --gulpfile client/gulpfile.babel.js",
-    "start":"node server/app.js"
+    "start":"node server/main.js"
   },
   "author": "Elia Fornari <dev@eliafornari.com> (http://eliafornari.com/)",
   "license": "ISC",

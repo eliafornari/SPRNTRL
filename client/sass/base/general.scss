@@ -16,14 +16,26 @@
     text-shadow: none;
 }
 
+input{
+  ::-moz-selection {
+      background: light-blue !important;
+      text-shadow: none;
+  }
+
+  ::selection {
+      background: light-blue !important;
+      text-shadow: none;
+  }
+}
 
 
-a:active {
-    color: $yellow;
+
+a:active, p:active {
+  color: $green;
 }
 .ng-click-active{
-  color:$yellow;
-  stroke: $yellow;
+  color:$green;
+  stroke: $green;
 }
 
 

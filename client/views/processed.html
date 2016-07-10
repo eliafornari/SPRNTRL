@@ -1,0 +1,18 @@
+<div class="processed" ng-cloak>
+  <div class="processed-error" ng-show="errorMessage">
+    <p>{{errorMessage}}</p>
+    <a class="hvr-skew"ng-click="backFromPayment()">back</a>
+  </div>
+
+  <div class="processed-thankyou" ng-show="thankYou">
+    <p>{{thankYou.message}}</p>
+    <p>
+      your order will be shipped to
+      {{thankYou.order.ship_to.data.address_1}}
+      {{thankYou.order.ship_to.data.city}}
+      {{thankYou.order.ship_to.data.country.value}}
+      {{thankYou.order.ship_to.data.country.value}}
+    </p>
+    <a class="hvr-skew" href="https://www.instagram.com/sprntrlfrndgrp/">more</a>
+  </div>
+</div>

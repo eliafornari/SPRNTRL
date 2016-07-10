@@ -1,12 +1,23 @@
-<div class="cart" ng-show="showCart" ng-controller="cartCtrl">
-
-  <ul class="cart-ul">
-    <li ng-repeat="c in Cart.contents track by $index" class="cart-li">
-      <p>{{c.quantity}} {{c.name}} {{c.pricing.formatted.without_tax}} </p>
-    </li>
-  </ul>
+<div class="cart-contents" ng-controller="cartCtrl" > <!-- 1 -->
 
 
-  <a ui-sref="checkout" class="checkout">checkout</a>
+    <ul class="cart-ul">
+      <li ng-repeat="c in Cart.contents track by $index" class="cart-li">
+        <p>{{c.quantity}} {{c.name}} {{c.pricing.formatted.without_tax}}</p>
+         <span ng-click="removeItem(c.id)">X</span>
+      </li>
+    </ul>
+
+
+    <div class="cart-total">
+      <p class="cart-total-amount">SUM {{Cart.totals.pre_discount.formatted.without_tax}}</p>
+    </div>
+
+    <div class="cart-error" ng-show="noProductsError">
+      <p>no products in your cart</p>
+    </div>
+
+    <a class="checkout-button hvr-sweep-to-right" ng-click="cartToShipment()">checkout</a>
+
 
 </div>

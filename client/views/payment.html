@@ -1,0 +1,35 @@
+
+<div class="payment" ng-controller="checkoutCtrl">
+<!-- 3 -->
+
+  <form class="payment-form" method="post" ng-hide="paymentProcessed">
+    <h2 class="form-title">bill to</h2>
+    <div class="form-entry">
+      <input type="text" name="number" value="card number" ng-model="checkout.number" required="required" placeholder="card number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'card number'">
+    </div>
+    <div class="form-entry">
+      <input type="text" name="month" value="expiry month" ng-model="checkout.expiry_month" required="required" placeholder="expiry month" onfocus="this.placeholder = ''" onblur="this.placeholder = 'expiry month'">
+    </div>
+    <div class="form-entry">
+      <input type="text" name="year" value="expiry year" ng-model="checkout.expiry_year" required="required" placeholder="expiry year" onfocus="this.placeholder = ''" onblur="this.placeholder = 'expiry year'">
+    </div>
+    <div class="form-entry">
+      <input type="text" name="cvv" value="cvv" ng-model="checkout.cvv" ng-value="cvv" required="required" placeholder="cvv" onfocus="this.placeholder = ''" onblur="this.placeholder = 'cvv'">
+    </div>
+    <a class="checkout-button hvr-sweep-to-right" ng-click="paymentToProcess()">pay</a>
+    <!-- hvr-sweep-to-right -->
+  </form>
+
+
+  <div class="payment-total" >
+    <p>SUM WITH TAX {{Cart.totals.pre_discount.formatted.with_tax}}</p>
+  </div>
+
+  <div class="payment-back" ng-click="backFromCheckout()">
+    <p class="hvr-skew">back</p>
+  </div>
+
+
+
+
+</div>

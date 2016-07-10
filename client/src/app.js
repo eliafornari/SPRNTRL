@@ -1,11 +1,12 @@
 import jQuery from "jquery";
 import angular from 'angular'
 import 'angular-route'
+import 'angular-animate'
 import 'angular-ui-router'
 
 
 
-angular.module('myApp', ["ui.router", "ngRoute"])
+angular.module('myApp', ["ui.router", "ngRoute", "ngAnimate"])
 .run(['$rootScope', '$location','$route',($rootScope, $location, $route)=>{
 
 
@@ -242,8 +243,10 @@ $rootScope.readCookie = function(name) {
 
 
 $rootScope.windowHeight= $window.innerHeight;
+$rootScope.half_windowHeight = $window.innerHeight/2;
   jQuery($window).resize(function(){
     $rootScope.windowHeight = $window.innerHeight;
+    $rootScope.half_windowHeight = $window.innerHeight/2;
     // $rootScope.checkSize();
       $scope.$apply();
   });
@@ -285,40 +288,68 @@ angular.element($window).bind("scroll", function() {
 
 
   if((scroll > pages[0].offset)&&(scroll < pages[1].offset)){
-    console.log('first');
+    if(($rootScope.showDetail==true)&&(scroll < (pages[1].offset/2))){$rootScope.showDetail=false;}else if(scroll >= (pages[1].offset/2)){$rootScope.showDetail=true;}
     if ($location.path()!= $location.path('/')){
       $location.path('/', false);
     }
 
   }else if((scroll >= pages[1].offset)&&(scroll < pages[2].offset)){
-    console.log('products');
+    if($rootScope.showDetail==false){$rootScope.showDetail=true;}
     if ($location.path()!= $location.path('/products')){
       $location.path('/products', false);
     }
 
+
+    if(($rootScope.showDetail==true)&&(scroll > (pages[2].offset-$rootScope.half_windowHeight))){$rootScope.showDetail=false;}else if(scroll>=(pages[2].offset-$rootScope.half_windowHeight)){$rootScope.showDetail=true;}
+
+
+
   }else if(scroll >= pages[2].offset){
-    console.log('charity');
+    if($rootScope.showDetail==true){$rootScope.showDetail=false;}
     if ($location.path()!= $location.path('/charity')){
       $location.path('/charity', false);
     }
   }
 
 
-  if (scroll < ($rootScope.windowHeight/2)){
+  if ((scroll < ($rootScope.windowHeight/2)) && ($rootScope.logoCorner==true)){
     $rootScope.logoCorner=false;
-    $rootScope.showDetail=false;
-  }else if((scroll > ($rootScope.windowHeight/2)) && (scroll <= ($rootScope.windowHeight*2))){
+    console.log('logoCorner=false');
+  }else if((scroll > ($rootScope.windowHeight/2)) && ($rootScope.logoCorner==false)){
     $rootScope.logoCorner=true;
-    $rootScope.showDetail=true;
-  }else{
-    $rootScope.logoCorner=false;
+    console.log('logoCorner=true');
   }
   $scope.$apply();
 
 })
 
 
-})// end of
+
+
+
+
+
+
+
+
+
+
+
+
+  $rootScope.showCart = false;
+  $rootScope.template={};
+  $rootScope.templates = [
+                            { name: 'cart', url: 'views/cart.html'},
+                            { name: 'shipment', url: 'views/shipment.html'},
+                            { name: 'payment', url: 'views/payment.html'},
+                            { name: 'processed', url: 'views/processed.html'}
+                          ];
+  $rootScope.template = $rootScope.templates[0];
+
+
+
+
+})// end of appCtrl
 
 
 
@@ -387,8 +418,9 @@ angular.element($window).bind("scroll", function() {
 
 
 
+
 var service = require("./service.js");
 var product = require("./product.js");
 var cart = require("./cart.js");
-var cart = require("./checkout.js");
-var cart = require("./charity.js");
+var checkout = require("./checkout.js");
+var charity = require("./charity.js");

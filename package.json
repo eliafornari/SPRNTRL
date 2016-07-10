@@ -1,19 +1,23 @@
 {
   "name": "sprntrl",
   "version": "0.0.1",
+  "private": true,
   "description": "* Express",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "gulp watch --gulpfile client/gulpfile.babel.js"
+    "watch": "gulp watch --gulpfile client/gulpfile.babel.js",
+    "start":"node server/app.js"
   },
   "author": "Elia Fornari <dev@eliafornari.com> (http://eliafornari.com/)",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.6",
+    "angular-animate": "^1.5.7",
     "angular-resource": "^1.5.6",
     "angular-route": "^1.5.7",
     "angular-ui-router": "^0.3.0",
+    "aws-sdk": "^2.4.6",
     "body-parser": "^1.15.1",
     "ejs": "^2.4.2",
     "express": "^4.13.4",

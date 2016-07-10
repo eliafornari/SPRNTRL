@@ -1,9 +1,11 @@
 "use strict"
-
+let https = require("https");
+let fs = require('fs');
 let express = require("express");
 let bodyParser = require('body-parser');
 let routes  = require('./routes');
 let path = require('path');
+var util = require('util');
 let ejs = require('ejs');
 let app = express();
 
@@ -13,15 +15,13 @@ let moltin = require('moltin')({
 });
 
 
+
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/../client');
 app.use( express.static(__dirname + "/../client") );
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
-
-
 
 
 
@@ -59,6 +59,55 @@ app.get('/authenticate', function(req, res){
 
     });
 
+
+    app.post('/addVariation', function(req, res){
+
+      var id = req.body.id;
+      var modifier = req.body.modifier_id
+      var variation = req.body.variation_id
+      var token = req.body.access_token;
+
+      var obj={};
+
+      obj[modifier] = variation
+
+
+      console.log(req.body);
+      console.log(obj);
+
+      // res.setHeader("Authorization", "Bearer "+token);
+
+      moltin.Cart.Insert(id, 1, obj, function(cart) {
+        console.log(cart);
+        res.json(cart);
+
+      }, function(error, response, c) {
+        console.log(error);
+        console.log(response);
+        console.log(c);
+        res.json(error);
+          // Something went wrong...
+      });
+
+    });
+
+
+
+
+    app.post('/removeProduct', function(req, res){
+      var id = req.body.id;
+      console.log(id);
+      moltin.Cart.Remove(id, function() {
+          // Everything is awesome...
+          console.log("all good");
+          res.status(200);
+          res.json(items);
+      }, function(error, response, c) {
+          // Something went wrong...
+          console.log(response);
+      });
+    })
+
     app.get('/getProducts', function(req, res){
       getProduct(req, res);
     });
@@ -68,8 +117,9 @@ app.get('/authenticate', function(req, res){
     });
 
     app.post('/cartToOrder', function(req, res){
-      var gateway = req.body.gateway;
-      cartToOrder(req, res);
+      var data = req.body;
+
+      cartToOrder(req, res, data);
 
     });
 
@@ -91,7 +141,6 @@ app.get('/authenticate', function(req, res){
             // Update the cart display
         }, function(error){
               console.log(error);
-            // Something went wrong...
         });
 
     }
@@ -112,17 +161,26 @@ app.get('/authenticate', function(req, res){
 
 
 
-    function cartToOrder(req, res){
+    function cartToOrder(req, res, data){
+      console.log("wait for the order");
 
-        console.log("wait for the order");
+      console.log(data);
+      // var customer = data.customer;
+      console.log(data.shipment);
+      console.log(data.shipment.first_name);
+      var ship_to = data.shipment;
+      var bill_to = data.billing;
+      // console.log(ship_to);
+      // console.log(bill_to);
+
 
         moltin.Cart.Complete({
           gateway: 'stripe',
-          customer: {
-            first_name: 'Elia',
-            last_name:  'Fornari',
-            email:      'fornari.elia@gmail.com'
-          },
+          // customer: {
+          //   first_name: customer.first_name,
+          //   last_name:  customer.last_name,
+          //   email: customer.email
+          // },
           bill_to: {
             first_name: 'Elia',
             last_name:  'Fornari',
@@ -134,7 +192,17 @@ app.get('/authenticate', function(req, res){
             postcode:   '62012',
             phone:      '3319567561'
           },
-          ship_to: 'bill_to',
+          ship_to: {
+            first_name: ship_to.first_name,
+            last_name:  ship_to.last_name,
+            address_1:  ship_to.address_1,
+            address_2:  ship_to.address_2,
+            city:       ship_to.city,
+            county:     ship_to.county,
+            country:    ship_to.country,
+            postcode:   ship_to.postcode,
+            phone:      ship_to.phone,
+          },
           shipping: 'USPS'
         }, function(order) {
 
@@ -158,18 +226,33 @@ app.get('/authenticate', function(req, res){
 
     function orderToPayment(req, res, order){
       console.log(order);
-      moltin.Checkout.Payment('purchase', order.id, {
-        data: {
-          number:       order.number,
-          expiry_month: order.expiry_month,
-          expiry_year:  order.year,
-          cvv:          order.cvv
-        }
-      }, function(payment) {
+      var card_number = order.number.toString();
+      console.log(card_number);
+      var expiry_month = order.expiry_month;
+      var expiry_year = order.expiry_year;
+      var cvv = order.cvv;
+      var obj={};
+      obj = {
+                data: {
+                number: card_number,
+                expiry_month: expiry_month,
+                expiry_year: expiry_year,
+                cvv: cvv
+              }
+            }
+      moltin.Checkout.Payment('purchase', order.id, obj, function(payment, error, status) {
+
+          console.log("payment successful");
           console.log(payment);
+          res.status(200).json(payment);
+
       }, function(error, response, c) {
-        console.log(response);
-        res.json(error);
+        console.log("payment failed!");
+        console.log("response: "+response);
+        console.log("c: "+c);
+        console.log("error: "+error);
+
+        res.status(c).json(response);
         // Something went wrong...
       })
     }
@@ -181,6 +264,10 @@ app.get('/authenticate', function(req, res){
 
 
 
+    const options = {
+      key: fs.readFileSync('.//keys/key.pem', 'utf8'),
+      cert: fs.readFileSync('.//keys/cert.pem', 'utf8')
+    };
 
 
 
@@ -202,4 +289,5 @@ app.get('/authenticate', function(req, res){
     app.get('*', routes.index);
 
 
-    app.listen(9000, () => console.log("listening on 9000"));
+    https.createServer(options, app).listen(9000);
+    // http.createServer(app).listen(9000);

@@ -1,0 +1,114 @@
+<div class="shipment" ng-controller="checkoutCtrl">
+
+<!-- 2 -->
+  <form class="shipment-form" method="post">
+
+
+
+
+    <!-- <div class="shipment-form-entry">
+      <input type="text" name="customername" value="name" ng-model="customer.first_name" required="required" placeholder="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'name'">
+    </div>
+
+    <div class="shipment-form-entry">
+      <input type="text" name="customerlastname" value="lastname" ng-model="customer.last_name" required="required" placeholder="lastname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'lastname'">
+    </div>
+
+    <div class="shipment-form-entry">
+      <input type="email" name="customeremail" value="email" ng-model="customer.email" required="required" placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'email'">
+    </div> -->
+
+  <div class="address">
+
+    <h2 class="form-title">ship to</h2>
+
+        <div class="form-entry">
+          <input type="text" name="name" value="name" ng-model="checkout.shipment.first_name" required="required" placeholder="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'name'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="lastname" value="lastname" ng-model="checkout.shipment.last_name" required="required" placeholder="lastname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'lastname'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="number" value="address" ng-model="checkout.shipment.address_1" required="required" placeholder="address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'address'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="city" value="city" ng-model="checkout.shipment.city" required="required" placeholder="city" onfocus="this.placeholder = ''" onblur="this.placeholder = 'city'">
+        </div>
+
+
+        <div class="form-entry">
+          <input type="text" name="county" value="county" ng-model="checkout.shipment.county" required="required" placeholder="county" onfocus="this.placeholder = ''" onblur="this.placeholder = 'county'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="country" value="country" ng-model="checkout.shipment.country" required="required" placeholder="country" onfocus="this.placeholder = ''" onblur="this.placeholder = 'country'">
+        </div>
+
+
+        <div class="form-entry">
+          <input type="text" name="postcode" value="postcode" ng-model="checkout.shipment.postcode" required="required" placeholder="postcode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'postcode'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="phone" value="phone" ng-model="checkout.shipment.phone" required="required" placeholder="phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'phone'">
+        </div>
+
+    </div>
+
+<div class="isBillingDifferent">
+  <label for="isBillingDifferent-label">is billing different?</label>
+  <input class="isBillingDifferent-input" type="checkbox" name="isBillingDifferent" value="false" ng-model="isBillingDifferent">
+</div>
+
+
+
+
+      <div class="billing" ng-show="isBillingDifferent">
+        <h2 class="form-title">bill to</h2>
+        <div class="form-entry">
+          <input type="text" name="name" value="name" ng-model="checkout.billing.first_name" required="required" placeholder="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'name'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="lastname" value="lastname" ng-model="checkout.billing.last_name" required="required" placeholder="lastname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'lastname'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="number" value="address" ng-model="checkout.billing.address_1" required="required" placeholder="address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'address'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="city" value="city" ng-model="checkout.billing.city" required="required" placeholder="city" onfocus="this.placeholder = ''" onblur="this.placeholder = 'city'">
+        </div>
+
+
+        <div class="form-entry">
+          <input type="text" name="county" value="county" ng-model="checkout.billing.county" required="required" placeholder="county" onfocus="this.placeholder = ''" onblur="this.placeholder = 'county'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="country" value="country" ng-model="checkout.billing.country" required="required" placeholder="country" onfocus="this.placeholder = ''" onblur="this.placeholder = 'country'">
+        </div>
+
+
+        <div class="form-entry">
+          <input type="text" name="postcode" value="postcode" ng-model="checkout.billing.postcode" required="required" placeholder="postcode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'postcode'">
+        </div>
+
+        <div class="form-entry">
+          <input type="text" name="phone" value="phone" ng-model="checkout.billing.phone" required="required" placeholder="phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'phone'">
+        </div>
+
+
+      </div>
+
+
+    <a class="checkout-button hvr-sweep-to-right" ng-click="shipmentToPayment()">PAYMENT</a>
+    <!-- hvr-sweep-to-right -->
+  </form>
+
+
+</div>

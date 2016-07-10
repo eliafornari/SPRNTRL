@@ -39,13 +39,15 @@ $line-height-p: 22px;
 $black: #000000;
 $white: #FFFFFF;
 $yellow: #ede611;
+$green: #00FF00;
 
 
 // ........................................................MARGINS
 $margin-sides: 20px;
 $margin-bottom: 35px;
-$margin-top: 100px;
+$margin-top: 50px;
 $margin-sides-mobile:10px;
+$margin-left-paragraph:5px;
 
 // ........................................................TRANSITION TIMINGS
 $transition-extreme-slow: 1.4s;
@@ -56,11 +58,12 @@ $transition-fast: .2s;
 
 
 // ........................................................Z-INDEXES
-
+$z-loader:15;
 $z-logo:11;
-$z-loader:10;
+$z-cart: 13;
+$z-clickOut: 12;
 $z-dollar:10;
-$z-cart: 10;
+
 $z-detail:6;
 $z-nav:5;
 

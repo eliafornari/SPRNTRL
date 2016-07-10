@@ -2,17 +2,17 @@
   position: fixed;
   right: $margin-sides;
   top: 50%;
-  width:30vw;
-  height:30vw;
-  margin-top: -15vh;
+  width:40vw;
+  height:40vw;
+  margin-top: -20vw;
   z-index: $z-detail;
 }
 
 
 
 .detail-image{
-  width:28vw;
-  height:28vw;
+  width:30vw;
+  height:30vw;
   position: absolute;
   top:0;
   right:0;
@@ -20,20 +20,25 @@
 
 .detail-price{
   position: absolute;
-  height:50px;
-  top:50%;
-  left:0;
-  margin-top:-25px;
-  width:50px;
+  display: block;
+  height: auto;
+  bottom: 0px;
+  left: 0;
+  width: 50px;
+  @include paragraph();
 }
 .detail-add{
   position: absolute;
   height:50px;
-  top:50%;
+  bottom:0px;
   right:0;
-  margin-top:-25px;
   width:50px;
+  .detail-add-plus-variation{
+    color: rgba(0,0,0,0.1);
+  }
   p{
+    position: absolute;
+    bottom:0px;
     font-size: 50px;
     width: 50px;
     height: 50px;
@@ -42,6 +47,84 @@
     vertical-align: middle;
   }
 }
+
+.detail-modifiers{
+  position: absolute;
+  left:50px;
+  bottom: 0px;
+  margin-left:5px;
+  .detail-modifiers-ul{
+    display: block;
+    width:200px;
+    .detail-modifiers-ul-placeholder{
+      width:auto;
+      display: block;
+      float:left;
+      @include paragraph();
+    }
+    .detail-modifiers-variations{
+      width:auto;
+      display: block;
+      float:left;
+      margin-left: $margin-left-paragraph;
+      .detail-modifiers-variations-li{
+        display: block;
+        clear: both;
+        a{
+          @include paragraph();
+
+        }
+      }
+    }
+  }
+}
+
+
+
+.detail-error{
+  position: absolute;
+  top:50%;
+  left:0%;
+  width: 100%;
+  text-align: center;
+  height:30px;
+  margin-top: -15px;
+  line-height: 30px;
+}
+
+
+
+$animation-bezier: ease-in-out;
+$animation-color: 0.6s;
+.detail-add-plus-variation{
+  color: rgba(0,0,0,0.1);
+
+}
+.detail-add-plus-variation.activeAdd{
+  color: rgba(0,0,0,11);
+}
+
+.activeAdd-add.activeAdd-add-active{
+  animation: color $animation-color $animation-bezier;
+  -webkit-animation: color $animation-color $animation-bezier;
+  -moz-animation: color $animation-color $animation-bezier;
+  -o-animation: color $animation-color $animation-bezier;
+  -ms-animation: color $animation-color $animation-bezier;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

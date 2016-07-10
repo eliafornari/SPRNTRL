@@ -1,0 +1,37 @@
+
+.payment-form{
+  margin-top: $margin-top;
+}
+
+
+
+  .payment-total{
+    position: absolute;
+    left:50px;
+    bottom: 100px;
+    height: auto;
+    width: auto;
+    margin-bottom: $margin-sides;
+    background-color: rgba(255,255,255,0.7);
+    p{
+      @include h2();
+    }
+  }
+  .payment-back{
+    position: absolute;
+    right:50px;
+    bottom: 100px;
+    height: auto;
+    width: auto;
+    margin-bottom: $margin-sides;
+    background-color: rgba(255,255,255,0.7);
+    p{
+      @include h2();
+    }
+  }
+
+
+
+.payment-header{
+  @include h2();
+}

@@ -1,12 +1,28 @@
-<div class="detail" ng-controller="detailCtrl" ng-show="Detail.price && showDetail">
+<div class="detail" ng-controller="detailCtrl" ng-show="Detail.price && showDetail" ng-init="isSelectionOpen=true">
+
+  <img class="detail-image" src="{{Detail.images[0].url.http}}" alt="{{Detail.description}}"  class="product-image"/>
+
+  <div class="detail-modifiers">
+    <ul class="detail-modifiers-ul" ng-repeat="m in Detail.modifiers">
+      <p class="detail-modifiers-ul-placeholder" ng-click="showAllSelection()">{{m.title}} </p>
+
+      <div class="detail-modifiers-variations">
+        <li class="detail-modifiers-variations-li" ng-repeat="v in m.variations" ng-click="thisVariation(Detail.id , m.id, v.id, v.title); showAllSelection()" ng-show="selected==v.title || isSelectionOpen">
+          <a>{{v.title}}</a>
+        </li>
+      </div>
 
 
-    <img class="detail-image" src="{{Detail.images[0].url.http}}" alt="{{Detail.description}}"  class="product-image"/>
+    </ul>
+  </div>
 
-    <p class="detail-price">{{Detail.price.value}}</p>
+  <p class="detail-price">{{Detail.price.value}} {{thisVariation}}</p>
 
-    <div class="detail-add">
-      <p class="hvr-skew" ng-click="addToCart(Detail.id)">+</p>
-    </div>
+  <p class="detail-error" ng-show="variationErrorMessage">{{variationErrorMessage}}</p>
+
+  <div class="detail-add" ng-cloak>
+    <p class="hvr-skew" ng-show="!Detail.has_variation" ng-click="addToCart(Detail.id)" ng-cloak>+</p>
+    <p class="detail-add-plus-variation hvr-skew" ng-show="Detail.has_variation" ng-click="addVariation(Detail.id)" ng-class="{'activeAdd': selected}" ng-cloak>+</p>
+  </div>
 
 </div>

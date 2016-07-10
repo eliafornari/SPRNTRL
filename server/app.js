@@ -288,7 +288,7 @@ app.get('/authenticate', function(req, res){
 
     app.get('*', routes.index);
 
-    app.listen(80, () => console.log("listening on 9000"));
+    app.listen(9000, () => console.log("listening on 9000"));
 
     // https.createServer(options, app).listen(80);
     // http.createServer(app).listen(9000);

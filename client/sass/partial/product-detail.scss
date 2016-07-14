@@ -1,10 +1,10 @@
 .detail{
   position: fixed;
-  right: $margin-sides;
+  right: 0;
   top: 50%;
   width:40vw;
-  height:40vw;
-  margin-top: -20vw;
+  height: 50vh;
+  margin-top: -25vh;
   z-index: $z-detail;
 }
 
@@ -15,7 +15,7 @@
   height:30vw;
   position: absolute;
   top:0;
-  right:0;
+  right:$margin-sides;
 }
 
 .detail-price{
@@ -50,9 +50,9 @@
 
 .detail-modifiers{
   position: absolute;
-  left:50px;
-  bottom: 0px;
-  margin-left:5px;
+  left:0px;
+  bottom: 50px;
+  margin-left:0px;
   .detail-modifiers-ul{
     display: block;
     width:200px;
@@ -65,8 +65,8 @@
     .detail-modifiers-variations{
       width:auto;
       display: block;
-      float:left;
-      margin-left: $margin-left-paragraph;
+      float:none;
+      // margin-left: $margin-left-paragraph;
       .detail-modifiers-variations-li{
         display: block;
         clear: both;

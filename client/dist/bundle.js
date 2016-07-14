@@ -586,7 +586,7 @@ Product.controller('productCtrl', ['$scope', '$location', '$rootScope', '$http',
 
   $rootScope.thisProduct = function (id) {
     console.log(id);
-    $location.path("/products/" + id, false);
+    // $location.path("/products/"+id, false);
     $rootScope.detailUpdate(id);
   };
 

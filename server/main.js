@@ -95,6 +95,8 @@ app.get('/authenticate', function(req, res){
 
 
     app.post('/removeProduct', function(req, res){
+      console.log(req);
+
       var id = req.body.id;
       console.log(id);
       moltin.Cart.Remove(id, function() {

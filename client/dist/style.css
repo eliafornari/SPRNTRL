@@ -188,12 +188,12 @@ li:nth-child(3):after {
         width: 100%;
         text-align: center;
         display: block;
-        height: 20vh;
+        height: 17vh;
         vertical-align: middle;
         font-size: 14px;
         line-height: 30px;
         font-family: helvetica;
-        line-height: 20vh; }
+        line-height: 17vh; }
 
 .dollar {
   position: fixed;
@@ -251,7 +251,7 @@ li:nth-child(3):after {
   position: relative; }
 
 .product-ul {
-  width: 100vw;
+  width: 60vw;
   height: auto;
   padding-top: 100px; }
   .product-ul .product-li {
@@ -271,11 +271,11 @@ li:nth-child(3):after {
 
 .detail {
   position: fixed;
-  right: 20px;
+  right: 0;
   top: 50%;
   width: 40vw;
-  height: 40vw;
-  margin-top: -20vw;
+  height: 50vh;
+  margin-top: -25vh;
   z-index: 6; }
 
 .detail-image {
@@ -283,7 +283,7 @@ li:nth-child(3):after {
   height: 30vw;
   position: absolute;
   top: 0;
-  right: 0; }
+  right: 20px; }
 
 .detail-price {
   position: absolute;
@@ -316,9 +316,9 @@ li:nth-child(3):after {
 
 .detail-modifiers {
   position: absolute;
-  left: 50px;
-  bottom: 0px;
-  margin-left: 5px; }
+  left: 0px;
+  bottom: 50px;
+  margin-left: 0px; }
   .detail-modifiers .detail-modifiers-ul {
     display: block;
     width: 200px; }
@@ -332,8 +332,7 @@ li:nth-child(3):after {
     .detail-modifiers .detail-modifiers-ul .detail-modifiers-variations {
       width: auto;
       display: block;
-      float: left;
-      margin-left: 5px; }
+      float: none; }
       .detail-modifiers .detail-modifiers-ul .detail-modifiers-variations .detail-modifiers-variations-li {
         display: block;
         clear: both; }
@@ -431,11 +430,28 @@ li:nth-child(3):after {
 .cart-ul {
   position: absolute;
   left: 50px;
-  top: 50px;
-  width: auto;
-  height: auto; }
+  top: 0;
+  width: 400px;
+  height: auto;
+  max-height: 400px;
+  overflow: scroll; }
   .cart-ul .cart-li {
-    width: 100%; }
+    width: 100%;
+    display: block;
+    height: 70px; }
+    .cart-ul .cart-li:nth-child(1) {
+      margin-top: 50px; }
+    .cart-ul .cart-li p {
+      font-size: 14px;
+      line-height: 22px;
+      font-family: helvetica;
+      float: left; }
+    .cart-ul .cart-li span {
+      float: right;
+      margin-left: 5px;
+      font-size: 14px;
+      line-height: 22px;
+      font-family: helvetica; }
 
 .cart-total {
   position: absolute;

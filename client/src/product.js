@@ -91,7 +91,7 @@ Product.controller('productCtrl', [ '$scope','$location', '$rootScope', '$http',
       $scope.variationErrorMessage = "select a size first"
       setTimeout(function(){
         $scope.variationErrorMessage = false;
-        $rootScope.apply();
+        $rootScope.$apply();
       });
     }
 

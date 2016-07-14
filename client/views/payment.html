@@ -2,10 +2,12 @@
 <div class="payment" ng-controller="checkoutCtrl">
 <!-- 3 -->
 
-  <form class="payment-form" method="post" ng-hide="paymentProcessed">
+  <form novalidate class="payment-form" method="post" ng-hide="paymentProcessed" ng-submit="paymentToProcess()">
     <h2 class="form-title">bill to</h2>
     <div class="form-entry">
-      <input type="text" name="number" value="card number" ng-model="checkout.number" required="required" placeholder="card number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'card number'">
+      <input type="text" name="number" value="card number" ng-model="checkout.number" required="required" placeholder="card number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'card number'" min="0" max="10">
+      <span ng-show="checkout.size.$error.integer">The value is not a valid integer!</span>
+      <span ng-show="checkout.size.$error.min || form.size.$error.max">The value must be in range 0 to 10!</span>
     </div>
     <div class="form-entry">
       <input type="text" name="month" value="expiry month" ng-model="checkout.expiry_month" required="required" placeholder="expiry month" onfocus="this.placeholder = ''" onblur="this.placeholder = 'expiry month'">
@@ -16,13 +18,15 @@
     <div class="form-entry">
       <input type="text" name="cvv" value="cvv" ng-model="checkout.cvv" ng-value="cvv" required="required" placeholder="cvv" onfocus="this.placeholder = ''" onblur="this.placeholder = 'cvv'">
     </div>
-    <a class="checkout-button hvr-sweep-to-right" ng-click="paymentToProcess()">pay</a>
+    <button type="submit" class="checkout-button hvr-sweep-to-right">pay</button>
     <!-- hvr-sweep-to-right -->
   </form>
 
 
   <div class="payment-total" >
-    <p>SUM WITH TAX {{Cart.totals.pre_discount.formatted.with_tax}}</p>
+    <p>SHIPPING <span>{{Totals.totals.shipping_price.formatted}}</span></p>
+    <p>TAX <span>10%</span></p>
+    <p>SUM <span>{{Totals.totals.total.formatted}}</span></p>
   </div>
 
   <div class="payment-back" ng-click="backFromCheckout()">

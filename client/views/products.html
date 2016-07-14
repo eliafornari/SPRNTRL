@@ -3,11 +3,12 @@
 
 
   <ul class="product-ul" >
-    <li class="product-li" ng-repeat="p in Product" ng-if="(p.stock_level>0)">
+    <li class="product-li" ng-repeat="p in Product" ng-if="(p.stock_level>0)" ng-mouseenter="flip=true" ng-mouseleave="flip=false">
       <a ng-click="thisProduct(p.sku)">
-        <img src="{{p.images[0].url.http}}" alt="{{p.description}}"  class="product-image"/>
+        <img src="{{p.images[0].url.http}}" alt="{{p.description}}" class="product-image front" ng-class="{'flipped': flip}"/>
+        <img src="{{p.images[1].url.http}}" alt="{{p.description}}" class="product-image back" ng-if="p.images[1].url.http" ng-class="{'flipped': flip}"/>
+        <img src="{{p.images[0].url.http}}" alt="{{p.description}}" class="product-image back" ng-if="!p.images[1].url.http" ng-class="{'flipped': flip}"/>
       </a>
-
     </li>
   </ul>
 

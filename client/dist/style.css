@@ -204,6 +204,7 @@ li:nth-child(3):after {
     font-size: 14px;
     line-height: 50px;
     font-family: helvetica;
+    font-weight: 900;
     line-height: normal;
     font-size: 30px; }
   .dollar .dollar-contents {
@@ -260,14 +261,45 @@ li:nth-child(3):after {
     margin-bottom: 50px;
     margin-left: 5vw;
     display: block;
-    float: left; }
+    float: left;
+    perspective: 800px;
+    position: relative; }
     .product-ul .product-li .product-image {
+      position: absolute;
       width: auto;
       height: 100%;
       margin: auto;
-      display: block; }
+      display: block;
+      transform-origin: center; }
     .product-ul .product-li .product-price {
       width: 100%; }
+
+.front {
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  transform-origin: center;
+  backface-visibility: hidden; }
+
+.back {
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  transform-origin: 50% 50%; }
+
+.front.flipped {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg); }
+
+.back.flipped {
+  transform: rotateY(360deg) !important;
+  -webkit-transform: rotateY(360deg) !important;
+  -o-transform: rotateY(360deg) !important;
+  -moz-transform: rotateY(360deg) !important; }
 
 .detail {
   position: fixed;
@@ -408,8 +440,8 @@ li:nth-child(3):after {
   position: fixed;
   left: 100px;
   top: 20px;
-  height: 500px;
-  width: 500px;
+  height: 550px;
+  width: 550px;
   z-index: 13;
   background-color: #FFFFFF;
   mix-blend-mode: hard-light; }
@@ -431,14 +463,15 @@ li:nth-child(3):after {
   position: absolute;
   left: 50px;
   top: 0;
-  width: 400px;
+  width: 450px;
   height: auto;
-  max-height: 400px;
+  max-height: 450px;
   overflow: scroll; }
   .cart-ul .cart-li {
     width: 100%;
     display: block;
-    height: 70px; }
+    height: 70px;
+    position: relative; }
     .cart-ul .cart-li:nth-child(1) {
       margin-top: 50px; }
     .cart-ul .cart-li p {
@@ -451,7 +484,9 @@ li:nth-child(3):after {
       margin-left: 5px;
       font-size: 14px;
       line-height: 22px;
-      font-family: helvetica; }
+      font-family: helvetica;
+      position: absolute;
+      right: 0; }
 
 .cart-total {
   position: absolute;
@@ -585,6 +620,7 @@ li:nth-child(3):after {
     font-size: 14px;
     line-height: 50px;
     font-family: helvetica;
+    font-weight: 900;
     line-height: 7px; }
 
 .gradient {
@@ -691,17 +727,25 @@ li:nth-child(3):after {
     height: auto;
     margin-top: 50px; }
 
-.address {
-  width: 50%;
+.customer {
+  width: 30%;
   display: block;
   position: absolute;
-  left: 0; }
+  left: 0%; }
+
+.address {
+  width: 35%;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 120px; }
 
 .billing {
   width: 50%;
   display: block;
   position: absolute;
-  right: 0; }
+  left: 35%;
+  top: 120px; }
 
 .isBillingDifferent {
   position: absolute;
@@ -729,7 +773,13 @@ li:nth-child(3):after {
   height: 100px;
   line-height: 100px;
   color: red;
-  background-color: chartreuse; }
+  background-color: chartreuse;
+  font-size: 14px;
+  line-height: 50px;
+  font-family: helvetica;
+  font-weight: 900;
+  border: 0;
+  outline: 0; }
 
 .form-entry {
   width: 100%;
@@ -739,7 +789,7 @@ li:nth-child(3):after {
   .form-entry:nth-child(1) {
     margin-top: 15px; }
   .form-entry input {
-    width: auto;
+    width: 150px;
     margin-left: 50px;
     left: 0px;
     position: absolute;
@@ -774,13 +824,16 @@ li:nth-child(3):after {
   left: 50px;
   bottom: 100px;
   height: auto;
-  width: auto;
+  width: 150px;
   margin-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.7); }
   .payment-total p {
     font-size: 14px;
     line-height: 30px;
-    font-family: helvetica; }
+    font-family: helvetica;
+    width: 100%; }
+    .payment-total p span {
+      float: right; }
 
 .payment-back {
   position: absolute;

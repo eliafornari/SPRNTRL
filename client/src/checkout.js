@@ -4,7 +4,7 @@ Checkout.controller('checkoutCtrl', function($scope, $location, $rootScope, $sta
   $rootScope.thankYou, $rootScope.payment;
   $rootScope.isGradient = true;
 
-  $rootScope.customer, $rootScope.shipment, $rootScope.billing;
+  $rootScope.customer, $rootScope.shipment, $rootScope.billing, $rootScope.Totals;
 
   $rootScope.payment = {
                           id: '',
@@ -45,6 +45,9 @@ $rootScope.checkout={
 
     $http.post('/cartToOrder', $rootScope.checkout)
     .then(function(data) {
+
+      $rootScope.Totals=data.data;
+      console.log($rootScope.Totals);
           console.log("posted successfully");
       }, function(data) {
           console.error("error in posting");

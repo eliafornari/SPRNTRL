@@ -451,7 +451,7 @@ Checkout.controller('checkoutCtrl', function ($scope, $location, $rootScope, $st
   $rootScope.thankYou, $rootScope.payment;
   $rootScope.isGradient = true;
 
-  $rootScope.customer, $rootScope.shipment, $rootScope.billing;
+  $rootScope.customer, $rootScope.shipment, $rootScope.billing, $rootScope.Totals;
 
   $rootScope.payment = {
     id: '',
@@ -488,6 +488,9 @@ Checkout.controller('checkoutCtrl', function ($scope, $location, $rootScope, $st
     $rootScope.template = $rootScope.templates[2];
 
     $http.post('/cartToOrder', $rootScope.checkout).then(function (data) {
+
+      $rootScope.Totals = data.data;
+      console.log($rootScope.Totals);
       console.log("posted successfully");
     }, function (data) {
       console.error("error in posting");
@@ -637,7 +640,7 @@ Product.controller('productCtrl', ['$scope', '$location', '$rootScope', '$http',
       $scope.variationErrorMessage = "select a size first";
       setTimeout(function () {
         $scope.variationErrorMessage = false;
-        $rootScope.apply();
+        $rootScope.$apply();
       });
     }
   }; //addToCart

@@ -246,51 +246,51 @@ _angular2.default.module('myApp', ["ui.router", "ngRoute", "ngAnimate"]).run(['$
       pages[i].offset = thisOff;
       console.log(pages);
     }
+
+    _angular2.default.element($window).bind("scroll", function () {
+      var scroll = this.pageYOffset;
+
+      if (scroll > pages[0].offset && scroll < pages[1].offset) {
+        if ($rootScope.showDetail == true && scroll < pages[1].offset / 2) {
+          $rootScope.showDetail = false;
+        } else if (scroll >= pages[1].offset / 2) {
+          $rootScope.showDetail = true;
+        }
+        if ($location.path() != $location.path('/')) {
+          $location.path('/', false);
+        }
+      } else if (scroll >= pages[1].offset && scroll < pages[2].offset) {
+        if ($rootScope.showDetail == false) {
+          $rootScope.showDetail = true;
+        }
+        if ($location.path() != $location.path('/products')) {
+          $location.path('/products', false);
+        }
+
+        if ($rootScope.showDetail == true && scroll > pages[2].offset - $rootScope.half_windowHeight) {
+          $rootScope.showDetail = false;
+        } else if (scroll >= pages[2].offset - $rootScope.half_windowHeight) {
+          $rootScope.showDetail = true;
+        }
+      } else if (scroll >= pages[2].offset) {
+        if ($rootScope.showDetail == true) {
+          $rootScope.showDetail = false;
+        }
+        if ($location.path() != $location.path('/charity')) {
+          $location.path('/charity', false);
+        }
+      }
+
+      if (scroll < $rootScope.windowHeight / 2 && $rootScope.logoCorner == true) {
+        $rootScope.logoCorner = false;
+        console.log('logoCorner=false');
+      } else if (scroll > $rootScope.windowHeight / 2 && $rootScope.logoCorner == false) {
+        $rootScope.logoCorner = true;
+        console.log('logoCorner=true');
+      }
+      $scope.$apply();
+    });
   }, 600);
-
-  _angular2.default.element($window).bind("scroll", function () {
-    var scroll = this.pageYOffset;
-
-    if (scroll > pages[0].offset && scroll < pages[1].offset) {
-      if ($rootScope.showDetail == true && scroll < pages[1].offset / 2) {
-        $rootScope.showDetail = false;
-      } else if (scroll >= pages[1].offset / 2) {
-        $rootScope.showDetail = true;
-      }
-      if ($location.path() != $location.path('/')) {
-        $location.path('/', false);
-      }
-    } else if (scroll >= pages[1].offset && scroll < pages[2].offset) {
-      if ($rootScope.showDetail == false) {
-        $rootScope.showDetail = true;
-      }
-      if ($location.path() != $location.path('/products')) {
-        $location.path('/products', false);
-      }
-
-      if ($rootScope.showDetail == true && scroll > pages[2].offset - $rootScope.half_windowHeight) {
-        $rootScope.showDetail = false;
-      } else if (scroll >= pages[2].offset - $rootScope.half_windowHeight) {
-        $rootScope.showDetail = true;
-      }
-    } else if (scroll >= pages[2].offset) {
-      if ($rootScope.showDetail == true) {
-        $rootScope.showDetail = false;
-      }
-      if ($location.path() != $location.path('/charity')) {
-        $location.path('/charity', false);
-      }
-    }
-
-    if (scroll < $rootScope.windowHeight / 2 && $rootScope.logoCorner == true) {
-      $rootScope.logoCorner = false;
-      console.log('logoCorner=false');
-    } else if (scroll > $rootScope.windowHeight / 2 && $rootScope.logoCorner == false) {
-      $rootScope.logoCorner = true;
-      console.log('logoCorner=true');
-    }
-    $scope.$apply();
-  });
 
   $rootScope.showCart = false;
   $rootScope.template = {};

@@ -279,7 +279,7 @@ setTimeout(function(){
     pages[i].offset = thisOff;
     console.log(pages);
   }
-}, 600);
+
 
 
 angular.element($window).bind("scroll", function() {
@@ -328,7 +328,7 @@ angular.element($window).bind("scroll", function() {
 
 
 
-
+}, 600);
 
 
 

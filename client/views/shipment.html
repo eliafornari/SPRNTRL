@@ -1,7 +1,7 @@
 <div class="shipment" ng-controller="checkoutCtrl">
 
 <!-- 2 -->
-  <form novalidate class="shipment-form" method="post" ng-submit="shipmentToPayment()">
+  <form name="shipmentForm" novalidate class="shipment-form" method="post" ng-submit="shipmentToPayment()">
 
 
 
@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-entry">
-      <input type="email" name="customeremail" value="email" ng-model="customer.email" required placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'email'">
+      <input type="email" name="customeremail" value="email" ng-model="checkout.customer.email" required placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'email'">
       <div role="alert">
         <span class="error" ng-show="customer.email.$error.required">
           Required!</span>
@@ -115,7 +115,7 @@
       </div>
 
 
-    <button class="checkout-button hvr-sweep-to-right" type="submit" ng-class="valid">PAYMENT</button>
+    <button class="checkout-button hvr-sweep-to-right" type="submit" ng-class="{'invalid': shipmentForm.$invalid}" ng-disabled="shipmentForm.$invalid">PAYMENT</button>
     <!-- hvr-sweep-to-right -->
   </form>
 

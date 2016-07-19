@@ -99,7 +99,7 @@ app.get('/authenticate', function(req, res){
 
       var id = req.body.id;
       console.log(id);
-      moltin.Cart.Remove(id, function() {
+      moltin.Cart.Remove(id, function(items) {
           // Everything is awesome...
           console.log("all good");
           res.status(200);

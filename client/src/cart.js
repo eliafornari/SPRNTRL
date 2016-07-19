@@ -7,13 +7,11 @@ Cart.controller('cartCtrl', function($scope, $location, $rootScope, $stateParams
   $rootScope.openCart = function(){
     $rootScope.showCart = !$rootScope.showCart;
     $rootScope.updateCart();
-    console.log("opencart");
   }
 
   $rootScope.closeCart = function(){
     $rootScope.showCart = false;
   }
-
 
   $rootScope.$watch('Cart', function(newValue) {
       console.log(newValue);
@@ -29,16 +27,39 @@ Cart.controller('cartCtrl', function($scope, $location, $rootScope, $stateParams
             // 'Content-Type': 'application/json'
             'Content-Type': 'application/x-www-form-urlencoded'
           },
-          transformRequest: transformRequestAsFormPost,
+          transformRequest: transformRequestAsFormPost
           // data: {
           //       }
         }).then(function(response){
           $rootScope.Cart = response.data;
+
           console.log($rootScope.Cart);
           $rootScope.pageLoading = false;
-          console.log(response);
+
+          //attaching item id if cart>0
+          if(!$rootScope.Cart.total_items==0){
+            console.log("cart has some stuff");
+            $rootScope.attachItemID($rootScope.Cart.contents);
+          }
         });
   }//updateCart
+
+
+
+
+//attaching item function
+  $rootScope.attachItemID=function(obj){
+      Object.getOwnPropertyNames(obj).forEach(function(val, idx, array) {
+        $rootScope.Cart.contents[val].item=val;
+        // console.log(val + ' -> ' + obj[val]);
+        console.log($rootScope.Cart.contents);
+        console.log("added item");
+
+      });
+  }
+
+
+
 
 
 
@@ -56,6 +77,7 @@ $rootScope.removeItem = function(id){
                 id: id
               }
       }).then(function(response){
+        console.log("object removed");
         $rootScope.Cart = response;
         $rootScope.updateCart();
         $rootScope.pageLoading = false;

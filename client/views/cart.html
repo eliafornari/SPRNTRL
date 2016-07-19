@@ -4,7 +4,7 @@
     <ul class="cart-ul">
       <li ng-repeat="c in Cart.contents track by $index" class="cart-li">
         <p>{{c.quantity}} {{c.name}} {{c.pricing.formatted.without_tax}}</p>
-         <span class="hvr-skew" ng-click="removeItem(c.id)">X</span>
+         <span class="hvr-skew" ng-click="removeItem(c.item)">X</span>
       </li>
     </ul>
 
